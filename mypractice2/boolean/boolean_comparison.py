@@ -1,8 +1,7 @@
-# Boolean comparison example
-
-a = 10
-b = 20
+a = 20
+b = 15
 
 print(a > b)
 print(a == b)
 print(a != b)
+print(a <= b)

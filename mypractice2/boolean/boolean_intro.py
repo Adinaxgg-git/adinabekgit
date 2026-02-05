@@ -1,7 +1,5 @@
-# Boolean values example
-
-print(10 > 5)
-print(10 < 5)
+print(10 > 5)  # True
+print(10 < 5)  # False
 
 x = True
 y = False
