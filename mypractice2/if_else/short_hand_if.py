@@ -1,6 +1,4 @@
-# Short hand if else
+a = 10
+b = 20
 
-a = 5
-b = 10
-
-print("A bigger") if a > b else print("B bigger")
+print("A is bigger") if a > b else print("B is bigger")
