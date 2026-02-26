@@ -1,22 +1,19 @@
+# json.py
 import json
 
-# Python dictionary
-data = {
-    "name": "Adina",
-    "age": 18,
-    "city": "Almaty"
-}
+# Load JSON file
+with open("sample-data.json", "r") as f:
+    data = json.load(f)
 
-# Convert Python → JSON
-json_string = json.dumps(data, indent=4)
-print(json_string)
+# Exercise 1: Print interface table
+print("Interface Status")
+print("="*80)
+print(f"{'DN':<50} {'Description':<20} {'Speed':<6} {'MTU':<6}")
+print("-"*80)
 
-# Write JSON file
-with open("sample-data.json", "w") as file:
-    json.dump(data, file, indent=4)
-
-# Read JSON file
-with open("sample-data.json", "r") as file:
-    loaded_data = json.load(file)
-
-print("Loaded:", loaded_data)
+for item in data:
+    dn = item.get("dn", "")
+    desc = item.get("description", "")
+    speed = item.get("speed", "")
+    mtu = item.get("mtu", "")
+    print(f"{dn:<50} {desc:<20} {speed:<6} {mtu:<6}")

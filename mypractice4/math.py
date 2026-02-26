@@ -1,26 +1,26 @@
+# math.py
 import math
-import random
 
-# Built-in functions
-print(min(3, 7, 1))
-print(max(3, 7, 1))
-print(abs(-10))
-print(round(3.14159, 2))
-print(pow(2, 3))
+# 1. Convert degree to radian
+degree = 15
+radian = math.radians(degree)
+print("Radian:", radian)
 
-# Math module
-print(math.sqrt(16))
-print(math.ceil(4.2))
-print(math.floor(4.8))
-print(math.pi)
-print(math.e)
+# 2. Area of a trapezoid
+height = 5
+base1 = 5
+base2 = 6
+area_trapezoid = (base1 + base2) * height / 2
+print("Area of trapezoid:", area_trapezoid)
 
-# Random module
-print(random.random())
-print(random.randint(1, 10))
+# 3. Area of regular polygon
+n_sides = 4
+side_length = 25
+area_polygon = side_length ** 2  # For square
+print("Area of polygon:", area_polygon)
 
-names = ["Ali", "Dana", "Sara"]
-print(random.choice(names))
-
-random.shuffle(names)
-print(names)
+# 4. Area of parallelogram
+base = 5
+height_parallelogram = 6
+area_parallelogram = base * height_parallelogram
+print("Area of parallelogram:", area_parallelogram)
