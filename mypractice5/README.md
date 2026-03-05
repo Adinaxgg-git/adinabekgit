@@ -1,9 +1,14 @@
-# MyPractice5 - Receipt Parsing Examples
+Tasks:
 
-This repository contains Python examples for parsing receipts using regular expressions.
+Extract all prices from the receipt
+Find all product names
+Calculate total amount
+Extract date and time information
+Find payment method
+Create a structured output (JSON or formatted text)
+Implementation:
 
-## Files
-
-- `receipt_parser.py` — Python script to parse a receipt file.
-- `raw.txt` — Example text of a receipt.
-- `README.md` — Project description.
+Create a receipt_parser.py file
+Use appropriate regex patterns to extract data
+Handle various formatting edge cases
+Output parsed data in a readable format
