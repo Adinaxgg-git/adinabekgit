@@ -1,0 +1,4 @@
+#Найти максимум в массиве.
+n=int(input())
+num=list(map(int,input().split()))
+print(max(num))
