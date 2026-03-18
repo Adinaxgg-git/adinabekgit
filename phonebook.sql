@@ -77,3 +77,18 @@ BEGIN
     WHERE name = value OR phone = value;
 END;
 $$ LANGUAGE plpgsql;
+
+-- TESTS
+
+SELECT * FROM search_phonebook('Adi');
+
+CALL upsert_user('Adina', '11111111111');
+
+CALL insert_many_users(
+    ARRAY['Test1','Test2'],
+    ARRAY['87001234567','abc']
+);
+
+SELECT * FROM get_phonebook_paginated(2,0);
+
+CALL delete_user('Test1');
