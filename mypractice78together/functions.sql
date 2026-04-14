@@ -1,4 +1,8 @@
---Функция поиска по шаблону
+-- Удаляем старые функции (чтобы не было ошибок)
+DROP FUNCTION IF EXISTS search_contacts(TEXT);
+DROP FUNCTION IF EXISTS get_contacts_paginated(INT, INT);
+
+-- Поиск по шаблону
 CREATE OR REPLACE FUNCTION search_contacts(pattern TEXT)
 RETURNS TABLE(id INT, name VARCHAR, phone VARCHAR) AS $$
 BEGIN
@@ -10,8 +14,7 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
-
---Функция с pagination
+-- Pagination
 CREATE OR REPLACE FUNCTION get_contacts_paginated(lim INT, offs INT)
 RETURNS TABLE(id INT, name VARCHAR, phone VARCHAR) AS $$
 BEGIN
