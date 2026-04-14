@@ -47,10 +47,13 @@ def insert_from_console():
 def query_contacts():
     conn = get_connection()
     cur = conn.cursor()
+
     cur.execute("SELECT * FROM contacts")
     rows = cur.fetchall()
+
     for row in rows:
         print(row)
+
     cur.close()
     conn.close()
 

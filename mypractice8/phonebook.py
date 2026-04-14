@@ -1,42 +1,59 @@
-from connect import get_connection
+def insert_from_console():
+    name = input("Enter name: ")
+    phone = input("Enter phone: ")
 
-def test_all():
     conn = get_connection()
     cur = conn.cursor()
 
-    print("✅ Connected")
+    cur.execute("CALL upsert_contact(%s, %s)", (name, phone))
 
-    # 🔁 upsert
-    cur.execute("CALL upsert_contact(%s, %s)", ("Adina", "777777"))
     conn.commit()
-    print("✅ Upsert done")
+    cur.close()
+    conn.close()
 
-    # 🔍 search
-    cur.execute("SELECT * FROM search_contacts(%s)", ("Adi",))
-    print("🔍 Search:", cur.fetchall())
+    print("Contact added/updated.")
 
-    # 📥 bulk insert
-    cur.execute("""
-        CALL insert_many(
-            ARRAY['A', 'B', 'C'],
-            ARRAY['12345', 'abc', '99999']
-        )
-    """)
-    conn.commit()
-    print("✅ Bulk insert done")
+def search_contacts():
+    pattern = input("Enter search: ")
 
-    # 📄 pagination
-    cur.execute("SELECT * FROM get_contacts_paginated(%s, %s)", (5, 0))
-    print("📄 Paginated:", cur.fetchall())
+    conn = get_connection()
+    cur = conn.cursor()
 
-    # ❌ delete
-    cur.execute("CALL delete_contact(%s)", ("A",))
-    conn.commit()
-    print("🗑 Deleted A")
+    cur.execute("SELECT * FROM search_contacts(%s)", (pattern,))
+    rows = cur.fetchall()
+
+    for row in rows:
+        print(row)
 
     cur.close()
     conn.close()
-    print("✅ Done")
 
-if __name__ == "__main__":
-    test_all()
+def get_paginated():
+    limit = int(input("Limit: "))
+    offset = int(input("Offset: "))
+
+    conn = get_connection()
+    cur = conn.cursor()
+
+    cur.execute("SELECT * FROM get_contacts_paginated(%s, %s)", (limit, offset))
+    rows = cur.fetchall()
+
+    for row in rows:
+        print(row)
+
+    cur.close()
+    conn.close()
+
+def delete_contact():
+    value = input("Enter name or phone: ")
+
+    conn = get_connection()
+    cur = conn.cursor()
+
+    cur.execute("CALL delete_contact(%s)", (value,))
+
+    conn.commit()
+    cur.close()
+    conn.close()
+
+    print("Deleted.")
