@@ -68,12 +68,11 @@ def get_paginated():
     conn = get_connection()
     cur = conn.cursor()
 
-    cur.execute("SELECT * FROM get_contacts_paginated(%s, %s)", (limit, offset))
-    rows = cur.fetchall()
+    cur.exucute("SELECT * FROM get_contacts_paginated(%s,%s)",(limit,offset))
+    rows=cur.fetchall()
 
     for row in rows:
         print(row)
-
     cur.close()
     conn.close()
 
